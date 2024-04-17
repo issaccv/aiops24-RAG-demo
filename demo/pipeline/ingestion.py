@@ -50,8 +50,8 @@ async def build_vector_store(
     config: dict, reindex: bool = False
 ) -> tuple[AsyncQdrantClient, QdrantVectorStore]:
     client = AsyncQdrantClient(
-        url=config["QDRANT_URL"],
-        # location=":memory:"
+        # url=config["QDRANT_URL"],
+        location=":memory:"
     )
     if reindex:
         try:
