@@ -18,7 +18,9 @@ async def main():
     # 初始化 LLM 嵌入模型 和 Reranker
     llm = Ollama(model="qwen", base_url=config["OLLAMA_URL"], temperature=0)
     embeding = HuggingFaceEmbedding(
-        model_name="BAAI/bge-small-zh-v1.5", cache_folder="./"
+        model_name="BAAI/bge-small-zh-v1.5",
+        cache_folder="./",
+        embed_batch_size=128,
     )
     Settings.embed_model = embeding
 
@@ -37,7 +39,7 @@ async def main():
             collection_name=config["COLLECTION_NAME"] or "aiops24",
             optimizer_config=models.OptimizersConfigDiff(indexing_threshold=0),
         )
-        await pipeline.arun(documents=data, show_progress=True)
+        await pipeline.arun(documents=data, show_progress=True, num_workers=2)
         # 恢复实时索引
         await client.update_collection(
             collection_name=config["COLLECTION_NAME"] or "aiops24",
@@ -51,19 +53,14 @@ async def main():
 
     # 生成答案
     print("Start generating answers...")
-    pbar = tqdm(total=len(queries))
 
-    # 将任务打包为一个列表
-    tasks = [
-        generation_with_knowledge_retrieval(
-            query["query"], retriever, llm, progress=pbar
+    results = []
+    for query in tqdm(queries, total=len(queries)):
+        result = await generation_with_knowledge_retrieval(
+            query["query"], retriever, llm
         )
-        for query in queries
-    ]
+        results.append(result)
 
-    # 并行执行并等待所有任务完成
-    results = await asyncio.gather(*tasks)
-    pbar.close()
     # 处理结果
     save_answers(queries, results, "submit_result.jsonl")
 
