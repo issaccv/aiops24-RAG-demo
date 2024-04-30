@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> 本分支用于Qwen-14b为基础模型的赛道，使用智谱清言API为基础模型的赛道，请参考[glm分支](https://github.com/issaccv/aiops24-RAG-demo/tree/glm)
+
 # 快速开始
 
 克隆本仓库后，运行`run.sh`安装ollama和qwen-1.5-14b-chat，以及初始化嵌入模型`BAAI/bge-small-zh-v1.5`
