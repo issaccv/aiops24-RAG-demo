@@ -3,7 +3,7 @@ import asyncio
 from dotenv import dotenv_values
 from llama_index.core import Settings
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
-from llama_index.llms.ollama import Ollama
+from llama_index.legacy.llms import OpenAILike as OpenAI
 from qdrant_client import models
 from tqdm.asyncio import tqdm
 
@@ -16,7 +16,11 @@ async def main():
     config = dotenv_values(".env")
 
     # 初始化 LLM 嵌入模型 和 Reranker
-    llm = Ollama(model="qwen", base_url=config["OLLAMA_URL"], temperature=0)
+    llm = OpenAI(
+        api_key=config["GLM_KEY"],
+        model="glm-4",
+        api_base="https://open.bigmodel.cn/api/paas/v4/",
+    )
     embeding = HuggingFaceEmbedding(
         model_name="BAAI/bge-small-zh-v1.5",
         cache_folder="./",
