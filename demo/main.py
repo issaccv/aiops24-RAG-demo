@@ -16,7 +16,9 @@ async def main():
     config = dotenv_values(".env")
 
     # 初始化 LLM 嵌入模型 和 Reranker
-    llm = Ollama(model="qwen", base_url=config["OLLAMA_URL"], temperature=0)
+    llm = Ollama(
+        model="qwen", base_url=config["OLLAMA_URL"], temperature=0, request_timeout=120
+    )
     embeding = HuggingFaceEmbedding(
         model_name="BAAI/bge-small-zh-v1.5",
         cache_folder="./",
