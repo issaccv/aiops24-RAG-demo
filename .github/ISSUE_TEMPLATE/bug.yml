@@ -1,6 +1,7 @@
 name: Bug反馈
 description: 请描述你遇到的Bug
 title: "[BUG]"
+
 body:
   - type: checkboxes
     id: checked
