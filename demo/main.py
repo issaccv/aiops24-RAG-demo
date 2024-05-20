@@ -43,7 +43,7 @@ async def main():
             collection_name=config["COLLECTION_NAME"] or "aiops24",
             optimizer_config=models.OptimizersConfigDiff(indexing_threshold=0),
         )
-        await pipeline.arun(documents=data, show_progress=True, num_workers=2)
+        await pipeline.arun(documents=data, show_progress=True, num_workers=1)
         # 恢复实时索引
         await client.update_collection(
             collection_name=config["COLLECTION_NAME"] or "aiops24",
