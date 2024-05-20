@@ -1,0 +1,56 @@
+name: Bug反馈
+description: 请描述你遇到的Bug
+title: "[BUG]"
+body:
+  - type: checkboxes
+    id: checked
+    attributes:
+      label: 检查之前的issues
+      options:
+        - label: 我已经检查过之前的issues，没有我遇到的问题
+          required: true
+  - type: textarea
+    id: content
+    attributes:
+      label: 描述Bug
+      description: 清晰准确地描述你所遇到的Bug
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: 复现步骤
+      description: 复现这一Bug所需的步骤
+    validations:
+      required: true
+  - type: textarea
+    id: exp
+    attributes:
+      label: 预期行为
+      description: 简明扼要地描述您期望发生的事情。
+  - type: dropdown
+    id: version
+    attributes:
+      label: 代码分支
+      description: 你正在使用哪个代码分支
+      options:
+        - glm
+        - main
+    validations:
+      required: true
+  - type: dropdown
+    id: env
+    attributes:
+      label: 运行环境
+      description: 运行Demo使用的环境
+      options:
+        - ModelScope（魔搭）
+        - 本地环境
+        - 其他
+    validations:
+      required: true
+  - type: textarea
+    id: supply
+    attributes:
+      label: 其他信息
+      description: 其他您觉得可能有关的信息
