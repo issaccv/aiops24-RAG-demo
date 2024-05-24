@@ -4,7 +4,7 @@
 mkdir bin
 
 # install ollama
-curl -L https://mirror.ghproxy.com/https://github.com/ollama/ollama/releases/download/v0.1.32/ollama-linux-amd64 -o bin/ollama
+git clone https://www.modelscope.cn/gabrielpondc/OllamaCOM.git && mv OllamaCOM/ollama-linux-amd64 bin/ollama
 chmod +x bin/ollama
 
 # run ollama in the background
