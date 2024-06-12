@@ -4,14 +4,14 @@
 mkdir bin
 
 # install ollama
-git clone https://www.modelscope.cn/gabrielpondc/OllamaCOM.git && mv OllamaCOM/ollama-linux-amd64 bin/ollama
+git clone https://www.modelscope.cn/issaccv/OllamaDeploy.git && mv OllamaDeploy/ollama-linux-amd64 bin/ollama
 chmod +x bin/ollama
 
 # run ollama in the background
 bin/ollama serve &
 
 # download model 
-wget "https://www.modelscope.cn/api/v1/models/qwen/Qwen1.5-14B-Chat-GGUF/repo?Revision=master&FilePath=qwen1_5-14b-chat-q4_0.gguf" -O qwen-1.5-14b-chat.gguf
+wget "https://www.modelscope.cn/api/v1/models/qwen/Qwen2-7B-Instruct-GGUF/repo?Revision=master&FilePath=qwen2-7b-instruct-q8_0.gguf" -O qwen-2-7b-instruct.gguf
 
 # create qwen with modelfile
 bin/ollama create qwen -f modelfile
