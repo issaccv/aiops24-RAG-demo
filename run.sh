@@ -4,8 +4,7 @@
 mkdir bin
 
 # install ollama
-git clone https://www.modelscope.cn/issaccv/OllamaDeploy.git && mv OllamaDeploy/ollama-linux-amd64 bin/ollama
-chmod +x bin/ollama
+wget "https://modelscope.cn/api/v1/models/issaccv/OllamaDeploy/repo?Revision=master&FilePath=ollama-linux-amd64" -O bin/ollama
 
 # run ollama in the background
 bin/ollama serve &
