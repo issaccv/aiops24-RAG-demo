@@ -8,7 +8,7 @@ body:
     attributes:
       label: 检查之前的issues
       options:
-        - label: 我已经检查过之前的issues，没有我遇到的问题
+        - label: 我已经检查过之前的issues（包括已经关闭的issue），没有我遇到的问题
           required: true
   - type: textarea
     id: content
